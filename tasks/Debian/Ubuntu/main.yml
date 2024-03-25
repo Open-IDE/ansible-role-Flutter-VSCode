@@ -12,22 +12,6 @@
     update_cache: true
   become: true
 
-- name: Android Dependencies
-  ansible.builtin.apt:
-    pkg:
-    # Not Found:
-    # - libc6:i386
-    # - libncurses5:i386
-    # - libstdc++6:i386
-    - lib32z1
-    # - libbz2-1.0:i386
-
-    # Fixed:
-    - libc6-dev-i386
-  become: true
-  when: platform == "Android"
-
-
 - name: Flutter extension for VS Code
   ansible.builtin.shell: "code --install-extension {{ item }}"
   args:
@@ -37,3 +21,15 @@
 
 - name: Flutter SDK
   include_tasks: Flutter SDK.yml
+
+- name: Android
+  include_tasks: ./Android.yml
+  when: Android
+
+- name: Linux
+  include_tasks: ./Linux.yml
+  when: Desktop and Linux
+
+- name: Web
+  include_tasks: ./Web.yml
+  when: Web

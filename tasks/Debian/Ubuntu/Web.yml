@@ -1,0 +1,17 @@
+---
+- name: Install Chromium Browser
+  ansible.builtin.apt:
+    pkg:
+    - chromium-browser
+  become: true
+
+- name: Set CHROME_EXECUTABLE
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    regexp: "export CHROME_EXECUTABLE=/usr/bin/chromium-browser"
+    line: "export CHROME_EXECUTABLE=/usr/bin/chromium-browser"
+    create: true
+  loop:
+  - .bashrc
+  - .bash_profile
+  - .profile

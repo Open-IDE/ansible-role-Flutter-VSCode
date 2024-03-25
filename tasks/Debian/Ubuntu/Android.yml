@@ -1,0 +1,17 @@
+---
+- name: Android Dependencies
+  ansible.builtin.apt:
+    pkg:
+    # Not Found:
+    # - libc6:i386
+    # - libncurses5:i386
+    # - libstdc++6:i386
+    - lib32z1
+    # - libbz2-1.0:i386
+
+    # Fixed:
+    - libc6-dev-i386
+  become: true
+
+- ansible.builtin.include_role:
+    name: UniInc.Android-Studio

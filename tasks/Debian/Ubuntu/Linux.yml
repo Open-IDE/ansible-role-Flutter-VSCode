@@ -1,0 +1,10 @@
+--- 
+- name: Install Linux toolchain - develop for Linux desktop
+  ansible.builtin.apt:
+    pkg:
+    - clang
+    - cmake
+    - ninja-build
+    - pkg-config
+    - libgtk-3-dev
+  become: true
