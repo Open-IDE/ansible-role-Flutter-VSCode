@@ -1,0 +1,39 @@
+---
+
+- name: Common Dependencies
+  ansible.builtin.apt:
+    pkg:
+    - curl
+    - git
+    - unzip
+    - xz-utils
+    - zip
+    - libglu1-mesa
+    update_cache: true
+  become: true
+
+- name: Android Dependencies
+  ansible.builtin.apt:
+    pkg:
+    # Not Found:
+    # - libc6:i386
+    # - libncurses5:i386
+    # - libstdc++6:i386
+    - lib32z1
+    # - libbz2-1.0:i386
+
+    # Fixed:
+    - libc6-dev-i386
+  become: true
+  when: platform == "Android"
+
+
+- name: Flutter extension for VS Code
+  ansible.builtin.shell: "code --install-extension {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item | lower }}*"
+  loop:
+  - Dart-Code.flutter
+
+- name: Flutter SDK
+  include_tasks: Flutter SDK.yml

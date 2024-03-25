@@ -1,2 +1,5 @@
 ---
-# tasks file for VSCode-Flutter
+# from: https://docs.flutter.dev/get-started/install/linux/android
+
+- name: OS specific
+  include_tasks: "{{ ansible_os_family }}/{{ ansible_distribution }}/main.yml"

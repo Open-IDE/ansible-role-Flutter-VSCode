@@ -1,2 +1,3 @@
 ---
 # defaults file for VSCode-Flutter
+platform: "Android"
