@@ -11,6 +11,6 @@
   become: true
 
 - name: Accept Flutter license
-  ansible.builtin.shell: yes | flutter doctor --android-licenses > /opt/flutter/license.yes
+  ansible.builtin.shell: yes | flutter doctor --android-licenses && touch /opt/flutter/license.yes
   args:
     creates: /opt/flutter/license.yes
