@@ -3,6 +3,6 @@
   ansible.builtin.meta: reset_connection
 
 - name: Run Flutter Doctor
-  ansible.builtin.shell: flutter doctor >> flutter-doctor.log
+  ansible.builtin.shell: flutter doctor >> /opt/flutter-doctor.log
   args:
     chdir: "{{ ansible_env.HOME }}"
