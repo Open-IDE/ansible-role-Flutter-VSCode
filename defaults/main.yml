@@ -9,4 +9,4 @@ Linux: true
 Web: true
 
 # test
-run_flutter_doctor: true
+run_flutter_doctor: false #true

@@ -1,0 +1,20 @@
+---
+- name: Has sdkmanager
+  ansible.builtin.shell: which sdkmanager
+  register: sdkmanager
+  failed_when: false
+
+- name: Install Android SDK
+  ansible.builtin.shell: "{{ item }}"
+  loop:
+    - 'sdkmanager --install "platform-tools"'
+    - 'sdkmanager --install "platforms;android-34"'
+    - 'sdkmanager --install "cmdline-tools;latest"'
+    - 'sdkmanager --install "build-tools;34.0.0"'
+  when: sdkmanager.rc == 0 and not debug
+
+- name: AVD Emulator
+  ansible.builtin.shell: "{{ item }}"
+  loop:
+    - 'sdkmanager --install "emulator"'
+  when: android_emulator and sdkmanager.rc == 0 and not debug
