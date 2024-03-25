@@ -19,6 +19,7 @@
   ansible.builtin.unarchive:
     src: "{{ download_dir }}/{{ flutter_sdk_file_name }}"
     dest: /usr/bin
+    creates: /usr/bin/flutter
     remote_src: yes
   become: true
 
