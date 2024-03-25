@@ -5,7 +5,7 @@ flutter_sdk_file_name: "flutter_linux_{{ flutter_sdk_version }}-stable.tar.xz"
 
 flutter_sdk_download_url: "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/{{ flutter_sdk_file_name }}"
 
-download_dir: "/opt/flutter"
+download_dir: "/opt/download"
 
 flutter_path_line: 'export PATH="/usr/bin/flutter/bin:$PATH"'
 # 'export PATH="$HOME/development/flutter/bin:$PATH"'
