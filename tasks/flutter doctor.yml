@@ -1,0 +1,8 @@
+---
+- name: Reset connection to pick up Flutter Environment
+  ansible.builtin.meta: reset_connection
+
+- name: Run Flutter Doctor
+  ansible.builtin.shell: flutter doctor >> flutter-doctor.log
+  args:
+    chdir: "{{ ansible_env.HOME }}"

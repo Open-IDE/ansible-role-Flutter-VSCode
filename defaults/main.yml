@@ -7,3 +7,6 @@ Desktop: true
 Linux: true
 
 Web: true
+
+# test
+run_flutter_doctor: true

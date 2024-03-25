@@ -3,3 +3,7 @@
 
 - name: OS specific
   include_tasks: "{{ ansible_os_family }}/{{ ansible_distribution }}/main.yml"
+
+- name: Flutter Doctor
+  include_tasks: flutter doctor.yml
+  when: run_flutter_doctor
