@@ -1,12 +1,17 @@
 ---
 # platforms
-Android: false
+android: false
 
-Desktop: true
+desktop: true
 
-Linux: true
+linux: true
 
-Web: true
+web: true
+
+android_emulator: true
 
 # test
-run_flutter_doctor: false #true
+run_flutter_doctor: false
+
+# Todo: Include Vars from: roles/Android-sdkmanager!
+android_home: "/opt/android"

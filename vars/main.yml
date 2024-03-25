@@ -10,5 +10,3 @@ download_dir: "/opt/download"
 flutter_path_line: 'export PATH="/usr/bin/flutter/bin:$PATH"'
 
 flutter_path_line_regex: 'export PATH="/usr/bin/flutter/bin:\\$PATH"'
-
-android_emulator: false

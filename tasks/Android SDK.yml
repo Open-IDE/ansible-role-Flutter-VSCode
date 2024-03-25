@@ -3,18 +3,31 @@
   ansible.builtin.shell: which sdkmanager
   register: sdkmanager
   failed_when: false
+  changed_when: false
 
-- name: Install Android SDK
+- name: Accept all Licenses
+  ansible.builtin.shell: |
+    bash -c "yes 'y' | sdkmanager --licenses"
+  args:
+    creates: "{{ android_home }}/licenses"
+
+- name: Android SDK packages
   ansible.builtin.shell: "{{ item }}"
+  args:
+    creates: "{{ android_home }}/build-tools" # Uses last one to make idempotent
   loop:
     - 'sdkmanager --install "platform-tools"'
     - 'sdkmanager --install "platforms;android-34"'
     - 'sdkmanager --install "cmdline-tools;latest"'
     - 'sdkmanager --install "build-tools;34.0.0"'
-  when: sdkmanager.rc == 0 and not debug
+  when: sdkmanager.rc == 0
 
-- name: AVD Emulator
+# assert: `sdkmanager --list_installed --verbose`
+
+- name: Android Emulator
   ansible.builtin.shell: "{{ item }}"
+  args:
+    creates: "{{ android_home }}/emulator"
   loop:
     - 'sdkmanager --install "emulator"'
-  when: android_emulator and sdkmanager.rc == 0 and not debug
+  when: android_emulator and sdkmanager.rc == 0

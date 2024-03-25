@@ -7,8 +7,11 @@
 - name: Android SDK
   include_tasks: Android SDK.yml
 
-# - name: accept Android license
-#   include_tasks: accept Android license.yml
+# - name: Flutter SDK
+#   include_tasks: Flutter SDK.yml
+
+# - name: accept Flutter license
+#   include_tasks: accept Flutter license.yml
 
 # - name: Flutter Doctor
 #   include_tasks: Flutter Doctor.yml
