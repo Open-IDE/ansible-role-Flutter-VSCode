@@ -1,0 +1,16 @@
+---
+# from: https://stackoverflow.com/questions/48604914/flutter-run-error-you-have-not-accepted-the-license-agreements
+# `yes | flutter doctor --android-licenses`
+
+- name: Create a directory
+  ansible.builtin.file:
+    path: /opt/flutter
+    state: directory
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+  become: true
+
+- name: Accept Flutter license
+  ansible.builtin.shell: yes | flutter doctor --android-licenses > /opt/flutter/license.yes
+  args:
+    creates: /opt/flutter/license.yes
