@@ -1,18 +1,8 @@
 ---
-# from: https://docs.flutter.dev/get-started/install/linux/android
 
-- name: OS specific
-  include_tasks: "{{ ansible_os_family }}/{{ ansible_distribution }}/main.yml"
-
-- name: Android SDK
-  include_tasks: Android SDK.yml
-
-- name: Flutter SDK
-  include_tasks: Flutter SDK.yml
-
-- name: accept Flutter license
-  include_tasks: accept Flutter license.yml
-
-- name: Flutter Doctor
-  include_tasks: Flutter Doctor.yml
-  when: run_flutter_doctor
+- name: Flutter extension for VS Code
+  ansible.builtin.shell: "code --install-extension {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item | lower }}*"
+  loop:
+  - Dart-Code.flutter
